@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>api</title>
+</head>
+<body>
+    <div id="user-information">
+
+    </div>
+
+    <script>
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(data => showUserInformation(data))
+
+        function showUserInformation(data){
+
+            let userInformationList = '';
+            for(var i=0;i<data.length;i++){
+                //console.log(data[i].name);
+                userInformationList = userInformationList+`<div class="user">
+                <h2>Name: ${data[i].name}</h2>
+                <p>Email: ${data[i].email}</p>
+                <p> ${data[i].company.name}. ${data[i].company.catchPhrase}. ${data[i].company.bs}</p>
+                </div>`
+
+            }
+            document.getElementById("user-information").innerHTML=userInformationList;
+        }
+
+    </script>
+</body>
+</html>
